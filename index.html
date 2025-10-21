@@ -25,6 +25,7 @@
       font-family: 'Inter', sans-serif;
       text-align: center;
       padding: 40px;
+      flex-direction: column;
     }
 
     .text {
@@ -39,17 +40,45 @@
       from {opacity: 0;}
       to {opacity: 1;}
     }
+
+    #boton-musica {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #ff6699;
+    }
   </style>
 </head>
 
 <body>
-  <!-- 🔊 Aquí va tu audio dentro del body -->
+  <!-- Música con autoplay -->
   <audio id="musica" autoplay loop>
     <source src="musica.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Texto principal -->
   <div class="text">
     espero que nadie se entere de lo que siento que nadie sepa por qué te pienso debo amarte en silencio observarte en secreto fingir que no te quiero que no quiero que nos queramos es mentira por qué espero con el día en que solo tú y yo seamos débo amarte en silencio esconder mis sentimientos decir que el amor no habita en mi que no se me da que nunca sería fácil para mi debo fingir indiferencia cuando estás cerca de mi para que nadie sospeche lo que siento yo por ti debo amarte en silencio ignorar que te llevo siempre en mi pensamiento decirle a todos que te quiero solo como una amistad muero por qué pase de esa línea y seamos algo mas nose asta cuando puedo seguir amándote en silencio y llegar aún día en el que explote todo los que llevo dentro y te prometo que gritaré todo lo que siento.
   </div>
+
+  <!-- Botón de respaldo -->
+  <button id="boton-musica" style="display:none;" onclick="document.getElementById('musica').play(); this.style.display='none';">
+    Escuchar música
+  </button>
+
+  <!-- Script para autoplay y mostrar botón si falla -->
+  <script>
+    const audio = document.getElementById('musica');
+    const boton = document.getElementById('boton-musica');
+
+    audio.play().catch(() => {
+      // Si autoplay falla, mostramos el botón
+      boton.style.display = 'inline-block';
+    });
+  </script>
 </body>
 </html>
